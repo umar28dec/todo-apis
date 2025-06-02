@@ -19,7 +19,7 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy via SSH
+      - name: Deploy to EC2
         run: |
           scp -i ~/.ssh/id_ed25519 -r . ${{ secrets.EC2_HOST }}:~/app
           ssh -i ~/.ssh/id_ed25519 ${{ secrets.EC2_HOST }} << 'EOF'
