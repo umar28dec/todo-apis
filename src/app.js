@@ -1,11 +1,34 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const todoRoutes = require("./routes/todoRoutes");
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsdoc = require("swagger-jsdoc");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+
+// Swagger setup
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Node.js Todo API",
+      version: "1.0.0",
+      description: "A simple Todo API with Swagger docs",
+    },
+    servers: [
+      {
+        url: "http://localhost:3000",
+      },
+    ],
+  },
+  apis: ["./src/controllers/*.js"], // Path to your API docs
+};
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Root route
 app.get("/", (req, res) => {
@@ -14,6 +37,6 @@ app.get("/", (req, res) => {
 
 app.use(todoRoutes);
 
-app.listen(3000, "0.0.0.0", () => {
-  console.log("Server is running on port 3000");
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server is running on port ${PORT}`);
 });
