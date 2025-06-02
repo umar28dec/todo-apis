@@ -24,7 +24,7 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          scp -i ~/.ssh/id_ed25519 -r . ${{ secrets.EC2_HOST }}:~/app
+          rsync -avz --exclude='.git' -e "ssh -i ~/.ssh/id_ed25519" . ${{ secrets.EC2_HOST }}:~/app
           ssh -i ~/.ssh/id_ed25519 ${{ secrets.EC2_HOST }} << 'EOF'
             cd ~/app
             docker-compose down || true
