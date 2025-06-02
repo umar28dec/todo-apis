@@ -19,3 +19,6 @@ build/
 
 # Coverage
 coverage/
+
+# Git folder (not recommended)
+.git/
