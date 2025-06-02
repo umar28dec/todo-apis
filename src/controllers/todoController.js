@@ -1,3 +1,27 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Todo:
+ *       type: object
+ *       required:
+ *         - title
+ *       properties:
+ *         _id:
+ *           type: string
+ *           description: The auto-generated id of the todo
+ *         title:
+ *           type: string
+ *           description: The todo title
+ *         completed:
+ *           type: boolean
+ *           description: Todo completion status
+ *       example:
+ *         _id: 60c72b2f9b1e8e001c8e4b8a
+ *         title: Buy groceries
+ *         completed: false
+ */
+
 class TodoController {
   constructor(todoModel) {
     this.todoModel = todoModel;

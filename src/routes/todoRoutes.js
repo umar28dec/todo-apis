@@ -1,12 +1,13 @@
-const express = require('express');
-const TodoController = require('../controllers/todoController');
+const express = require("express");
+const Todo = require("../models/todo"); // Import your Mongoose model
+const TodoController = require("../controllers/todoController");
 
 const router = express.Router();
-const todoController = new TodoController();
+const todoController = new TodoController(Todo); // Pass the model here
 
-router.post('/todos', todoController.createTodo.bind(todoController));
-router.get('/todos', todoController.getTodos.bind(todoController));
-router.put('/todos/:id', todoController.updateTodo.bind(todoController));
-router.delete('/todos/:id', todoController.deleteTodo.bind(todoController));
+router.post("/todos", (req, res) => todoController.createTodo(req, res));
+router.get("/todos", (req, res) => todoController.getTodos(req, res));
+router.put("/todos/:id", (req, res) => todoController.updateTodo(req, res));
+router.delete("/todos/:id", (req, res) => todoController.deleteTodo(req, res));
 
 module.exports = router;

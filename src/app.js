@@ -1,3 +1,5 @@
+require("dotenv").config(); // Add this at the top
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const todoRoutes = require("./routes/todoRoutes");
@@ -20,7 +22,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
+        url: `http://${process.env.HOST || "localhost"}:${PORT}`,
       },
     ],
   },
