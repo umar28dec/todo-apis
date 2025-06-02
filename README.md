@@ -23,6 +23,7 @@ nodejs-todo-api
 ## Installation
 
 1. Clone the repository:
+
    ```
    git clone https://github.com/yourusername/nodejs-todo-api.git
    cd nodejs-todo-api
@@ -36,6 +37,7 @@ nodejs-todo-api
 ## Running the Application
 
 To run the application locally, use the following command:
+
 ```
 npm start
 ```
@@ -47,6 +49,7 @@ The API will be available at `http://localhost:3000`.
 To build and run the application using Docker, use the following commands:
 
 1. Build the Docker image:
+
    ```
    docker build -t nodejs-todo-api .
    ```
@@ -57,6 +60,7 @@ To build and run the application using Docker, use the following commands:
    ```
 
 Alternatively, you can use Docker Compose to start the application:
+
 ```
 docker-compose up
 ```
@@ -70,4 +74,4 @@ docker-compose up
 
 ## License
 
-This project is licensed under the MIT License1
+This project is licensed under the MIT License
