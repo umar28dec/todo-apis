@@ -4,9 +4,8 @@ require("./db");
 const express = require("express");
 const bodyParser = require("body-parser");
 const todoRoutes = require("./routes/todoRoutes");
-const swaggerUi = require("swagger-ui-express");
-const swaggerJsdoc = require("swagger-jsdoc");
 const { requestLogger, errorLogger } = require("./logger");
+const { swaggerUi, swaggerSpec } = require("./swagger");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,25 +15,7 @@ app.use(bodyParser.json());
 // Use request logger middleware
 app.use(requestLogger());
 
-// Swagger setup
-const swaggerOptions = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Node.js Todo API",
-      version: "1.0.0",
-      description: "A simple Todo API with Swagger docs",
-    },
-    servers: [
-      {
-        url: `http://${process.env.HOST || "localhost"}:${PORT}`,
-      },
-    ],
-  },
-  apis: ["./src/controllers/*.js"],
-};
-
-const swaggerSpec = swaggerJsdoc(swaggerOptions);
+// Swagger docs route
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Root route
