@@ -5,7 +5,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const todoRoutes = require("./routes/todoRoutes");
 const { requestLogger, errorLogger } = require("./logger");
-const { swaggerUi, swaggerSpec } = require("./swagger");
+const swaggerUi = require("swagger-ui-express");
+const { swaggerSpec } = require("./swagger");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,8 +16,17 @@ app.use(bodyParser.json());
 // Use request logger middleware
 app.use(requestLogger());
 
-// Swagger docs route
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// Serve Swagger UI at /api-docs
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, { explorer: true })
+);
+
+// Optionally, serve the raw JSON for debugging
+app.get("/api-docs.json", (req, res) => {
+  res.json(swaggerSpec);
+});
 
 // Root route
 app.get("/", (req, res) => {
