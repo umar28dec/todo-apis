@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "swagger:generate": "bash ./swagger/generate-openapi.sh"
+    "swagger:generate": "bash ./swagger/generate-openapi.sh",
+    "lint": "eslint ."
   },
   "dependencies": {
     "dotenv": "^16.5.0",
@@ -17,6 +18,9 @@
     "swagger-ui-express": "5.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "eslint": "^9.28.0",
+    "globals": "^16.2.0",
     "nodemon": "^2.0.4"
   },
   "author": "Your Name",

@@ -14,7 +14,7 @@ function requestLogger() {
 }
 
 // Error-handling middleware for detailed error logs
-function errorLogger(err, req, res, next) {
+function errorLogger(err, req, res) {
   if (ENABLE_LOGGING) {
     console.error("Error occurred:", err.stack || err);
   }
